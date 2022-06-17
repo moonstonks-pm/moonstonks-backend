@@ -6,9 +6,9 @@ class Stock {
     final private String stockAbb;
     private double stockBidPrice;
 
-    Stock(String stockAbb){
+    Stock(String stockAbb){ //better from data base
         this.stockAbb = stockAbb;
-        stockBidPrice = 120; //get this from Market Interface Later
+        stockBidPrice = 120;
     }
 
     @Override

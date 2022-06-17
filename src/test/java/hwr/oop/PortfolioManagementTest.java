@@ -18,6 +18,11 @@ class PortfolioManagementTest {
         portfolio.buyStock(stock);
     }
 
+    @AfterEach
+    private void reset(){
+        portfolio.deletePortfolio();
+    }
+
     @Nested
     class StockTest {
         @Test
@@ -32,6 +37,13 @@ class PortfolioManagementTest {
         @Test
         void Portfolio_hasCorrectToStringMethod(){
             assertThat(portfolio).hasToString("Number of Shares: " +  1 + "\n" + "Stock name: " + stockNameAAPL + "\nStock bid price: " + stockBidPrice120);
+        }
+
+        @Test
+        void Portfolio_canSellStock(){
+            portfolio.sellStock();
+            //assertThat(portfolio.sellStock().toString()).isEqualTo("Stock name: " + stockNameAAPL + "\nStock bid price: " + stockBidPrice120);
+            assertThat(portfolio.IsEmpty()).isTrue();
         }
 
     }

@@ -1,8 +1,6 @@
 package hwr.oop;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Portfolio {
     private Queue<Stock> singleStock;
@@ -13,6 +11,19 @@ public class Portfolio {
 
     public void buyStock(Stock stock) {
         singleStock.add(stock);
+        System.out.println(stock.toString() + " has been bought!");
+    }
+
+    public void sellStock() { //add amount of stocks sold later
+        singleStock.remove();
+    }
+
+    public boolean IsEmpty(){ //choose stock later
+        return singleStock.isEmpty();
+    }
+
+    void deletePortfolio() { //for Test
+        singleStock.clear();
     }
 
     @Override
