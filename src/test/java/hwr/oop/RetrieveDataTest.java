@@ -47,6 +47,8 @@ class RetrieveDataTest {
 
             daily.toJSONString();
             System.out.println(daily);
+
+            //TODO: Add assertion for this test. Currently too lazy to do it :P
         } catch (Exception e){
             e.printStackTrace();
         }
