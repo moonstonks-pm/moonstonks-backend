@@ -1,18 +1,20 @@
 package hwr.oop;
 
 
-class Stock {
+import java.util.Date;
 
-    final private String stockAbb;
-    private double stockBidPrice;
+class Stock{
 
-    Stock(String stockAbb){ //better from data base
-        this.stockAbb = stockAbb;
-        stockBidPrice = 120;
+    private final double stockPrice;
+    private final String companyAbb;
+
+    Stock(String companyAbb) {
+        this.companyAbb = companyAbb;
+        this.stockPrice = 120;
     }
 
     @Override
-    public String toString(){
-        return "Stock name: " + stockAbb + "\nStock bid price: " + stockBidPrice;
+    public String toString() {
+        return "Stock name: " + companyAbb + "\nStock bid price: " + stockPrice;
     }
 }
