@@ -3,28 +3,31 @@ package hwr.oop;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class SecurityPosition {
+public class PortfolioPosition {
 
-    private final SecurityMetaData metaData;
+    private final ShareMetaData metaData;
+
+    private final String securityAcronym;
     private double priceGainsRealized;
     private Queue<Double> shares;
 
-    SecurityPosition(String securityAcronym){
-        metaData = new SecurityMetaData(securityAcronym);
+    PortfolioPosition(String securityAcronym){
+        this.securityAcronym = securityAcronym;
+        metaData = new ShareMetaData(securityAcronym);  //do I really need this here?
         shares = new LinkedList<Double>();
 
     }
 
     void addShare(String purchaseDate, int numberOfSharesBought){
         for(int i = 1; i < numberOfSharesBought; i++) {
-            shares.add(SecurityPriceData.getSharePrice(metaData.getSecurityAcronym(), purchaseDate));
+            shares.add(SharePriceData.getSharePrice(securityAcronym, purchaseDate));
         }
     }
 
     void removeShare(int numberOfSharesSold){
         for(int i = 1; i < numberOfSharesSold; i++) {
             priceGainsRealized +=
-                    SecurityPriceData.getSharePrice(metaData.getSecurityAcronym()) - shares.poll();
+                    SharePriceData.getSharePrice(securityAcronym) - shares.poll();
         }
     }
 
@@ -41,7 +44,7 @@ public class SecurityPosition {
     }
 
     double getCurrentPricePerShare(){
-        return SecurityPriceData.getSharePrice(metaData.getSecurityAcronym());
+        return SharePriceData.getSharePrice(securityAcronym);
     }
 
     boolean isEmpty(){

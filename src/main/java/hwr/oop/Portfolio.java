@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class Portfolio {
 
-    private HashMap<String, SecurityPosition> portfolio;
+    private HashMap<String, PortfolioPosition> portfolio;
 
     private static final String[] securitiesAvailableArray = new String[]{"SAP"};
 
@@ -24,7 +24,7 @@ public class Portfolio {
             throw new RuntimeException("Invalid number of shares");
 
         if(!portfolio.containsKey(companyAcronym)){
-            portfolio.put(companyAcronym,new SecurityPosition(companyAcronym));
+            portfolio.put(companyAcronym,new PortfolioPosition(companyAcronym));
         }
         portfolio.get(companyAcronym).addShare(purchaseDate, numberOfShares);
     }
@@ -44,7 +44,7 @@ public class Portfolio {
 
     double value(){
         double totalValue = 0;
-        for(SecurityPosition position : portfolio.values()){
+        for(PortfolioPosition position : portfolio.values()){
             totalValue+= position.getPositionSize() * position.getCurrentPricePerShare();
         }
         return totalValue;
