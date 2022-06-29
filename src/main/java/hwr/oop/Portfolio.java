@@ -1,33 +1,52 @@
 package hwr.oop;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Portfolio {
-    private Queue<Stock> singleStock;
 
-    public Portfolio() {
-        singleStock = new LinkedList<>(); //check if LikedList is best Data Struckture
+    private HashMap<String, SecurityPosition> portfolio;
+
+    private static final String[] securitiesAvailableArray = new String[]{"SAP"};
+
+    private static final HashSet<String> securitiesAvailable =
+            new HashSet<>(Arrays.asList(securitiesAvailableArray));
+
+    Portfolio(){ //maybe add name of owner or sth
+        this.portfolio = new HashMap<>();
     }
 
-    public void buyStock(Stock stock) {
-        singleStock.add(stock);
-        System.out.println(stock.toString() + " has been bought!");
+    public void buyShares(String companyAcronym, String purchaseDate, int numberOfShares){
+        if(!securitiesAvailable.contains(companyAcronym))
+            throw new RuntimeException("Security paper not available!");
+        if(numberOfShares < 1)
+            throw new RuntimeException("Invalid number of shares");
+
+        if(!portfolio.containsKey(companyAcronym)){
+            portfolio.put(companyAcronym,new SecurityPosition(companyAcronym));
+        }
+        portfolio.get(companyAcronym).addShare(purchaseDate, numberOfShares);
     }
 
-    public void sellStock() { //add amount of stocks sold later
-        singleStock.remove();
+    public void sellShares(String companyAcronym, int numberOfShares){
+        if(!portfolio.containsKey(companyAcronym))
+            throw new RuntimeException("You don't own that security paper!");
+        if(numberOfShares > portfolio.get(companyAcronym).getPositionSize())
+            throw new RuntimeException("You don't own this many shares");
+
+        portfolio.get(companyAcronym).removeShare(numberOfShares);
+
+        if(portfolio.get(companyAcronym).isEmpty()){
+            portfolio.remove(companyAcronym);
+        }
     }
 
-    public boolean IsEmpty(){ //choose stock later
-        return singleStock.isEmpty();
-    }
-
-    void deletePortfolio() { //for Test
-        singleStock.clear();
-    }
-
-    @Override
-    public String toString(){
-        return "Number of Shares: " +  singleStock.size() + "\n" + singleStock.peek().toString();
+    double value(){
+        double totalValue = 0;
+        for(SecurityPosition position : portfolio.values()){
+            totalValue+= position.getPositionSize() * position.getCurrentPricePerShare();
+        }
+        return totalValue;
     }
 }
