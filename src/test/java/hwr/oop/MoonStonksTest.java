@@ -77,11 +77,34 @@ public class MoonStonksTest {
                 assertThat(flag).isTrue();
             }
 
+            @Test
+            void buyShares_throwsExceptionForInvalidNumberOfShares(){
+                boolean flag = false;
+                try{
+                    n.buyShares("SAP","2022-06-17", -1);
+                }catch (Exception e) {
+                    assertThat(e).isInstanceOf(RuntimeException.class);
+                    flag = true;
+                }
+                assertThat(flag).isTrue();
+            }
+            
+            @Test
+            void buyShares_buyingSharesForFirstTime_CreatesNewKeyValuePair(){  //ToDo write correct test later
+                Portfolio p = new Portfolio();
+                p.buyShares("SAP", "2022-06-22", 1);
+                assertThat(p.value()).isEqualTo(89.69);
+            }
+
         }
 
         @Nested
         class PortfolioOutput { //would be cooler with @AfterAll but must be static sooo....
-
+            @Test
+            void getOutput(){
+                n.buyShares("SAP", "2022-06-21",2);
+                n.output();
+            }
 
         }
 }

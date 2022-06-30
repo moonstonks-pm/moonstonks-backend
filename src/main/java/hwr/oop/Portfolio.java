@@ -1,5 +1,6 @@
 package hwr.oop;
 
+import javax.sound.sampled.Port;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -42,11 +43,21 @@ public class Portfolio {
         }
     }
 
-    double value(){
+    public double value(){
         double totalValue = 0;
         for(PortfolioPosition position : portfolio.values()){
-            totalValue+= position.getPositionSize() * position.getCurrentPricePerShare();
+            totalValue+= position.getCurrentValue();
         }
         return totalValue;
+    }
+
+    public void output(){
+        for(String key : portfolio.keySet()){ //ToDo correct formatting and maybe add analytics
+            System.out.println(key + "| Amount Deposited: " + portfolio.get(key).getAmountDeposited() +
+                    "| Current Value: " + portfolio.get(key).getCurrentValue() +
+                    "| price Gains: " + (portfolio.get(key).getCurrentValue() - portfolio.get(key).getAmountDeposited()) +
+                    "| buy in: " + (portfolio.get(key).getAmountDeposited() / portfolio.get(key).getPositionSize()) +
+                    "| # of Shares: " + portfolio.get(key).getPositionSize());
+        }
     }
 }
