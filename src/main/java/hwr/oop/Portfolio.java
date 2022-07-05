@@ -14,7 +14,7 @@ public class Portfolio {
     private static final HashSet<String> securitiesAvailable =
             new HashSet<>(Arrays.asList(securitiesAvailableArray));
 
-    Portfolio(){ //maybe add name of owner or sth
+    public Portfolio(){ //maybe add name of owner or sth
         this.portfolio = new HashMap<>();
     }
 

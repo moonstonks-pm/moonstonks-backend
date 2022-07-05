@@ -3,7 +3,6 @@ package hwr.oop;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class MoonStonksTest {
 
@@ -25,13 +24,13 @@ public class MoonStonksTest {
 
             @Test
           void getSharePrice_retrievesCorrectData(){
-                    assertThat(SharePriceData.getSharePrice("SAP", "2022-06-21"))
+                    assertThat(SharePriceData.getShareCurrentPrice("SAP", "2022-06-21"))
                             .isEqualTo(120.42);
             }
 
             @Test
           void getCurrentSharePrice_retrievesCorrectData(){
-                    assertThat(SharePriceData.getSharePrice("SAP")).isEqualTo(89.69);
+                    assertThat(SharePriceData.getShareCurrentPrice("SAP")).isEqualTo(89.69);
             }
     }
 
@@ -96,10 +95,52 @@ public class MoonStonksTest {
                 assertThat(p.value()).isEqualTo(89.69);
             }
 
+            @Test
+            void sellShares_throwsExceptionForInvalidSecurityPaper(){
+                Portfolio p = new Portfolio();
+                boolean flag = false;
+                try{
+                    p.sellShares("SAP", 1);
+                }catch (Exception e) {
+                    assertThat(e).isInstanceOf(RuntimeException.class);
+                    flag = true;
+                }
+                assertThat(flag).isTrue();
+            }
+
+            @Test
+            void sellShares_throwsExceptionForInvalidNumberOfShares(){
+                Portfolio p = new Portfolio();
+                p.buyShares("SAP", "2022-06-21", 2);
+                boolean flag = false;
+                try{
+                    p.sellShares("SAP", 3);
+                }catch (Exception e){
+                    assertThat(e).isInstanceOf(RuntimeException.class);
+                    flag = true;
+                }
+                assertThat(flag).isTrue();
+            }
+
+            @Test
+            void sellShares_sellingSharesSoThatPortfolioIsEmpty_DeletesKeyValuePair(){  //ToDo write correct test later
+                Portfolio p = new Portfolio();
+                p.buyShares("SAP", "2022-06-17",1);
+                p.sellShares("SAP", 1);
+                assertThat(p.value()).isEqualTo(0);
+            }
+
         }
 
         @Nested
         class PortfolioOutput { //would be cooler with @AfterAll but must be static sooo....
+
+            @Test
+            void toStringPortfolioPosition_returnsCorrectString(){
+                PortfolioPosition pp = new PortfolioPosition("SAP");
+                pp.addShare("2022-06-17", 2);
+                assertThat(pp.toString()).hasToString("[120.42, 120.42]");
+            }
             @Test
             void getOutput(){
                 n.buyShares("SAP", "2022-06-21",2);
