@@ -27,19 +27,19 @@ class ShareMetaData {
         }};
         this.securityType = "Stock";
     }
-    String[] getSector() {
+    HashMap<String, Double> getSector() {
         return this.sector;
     }
 
-    String[] getIndustry(){
+    HashMap<String, Double> getIndustry(){
         return this.industry;
     }
 
-    String[] getCountry(){
+    HashMap<String, Double> getCountry(){
         return this.country;
     }
 
-    String[] getRegion() {
+    HashMap<String, Double> getRegion() {
         return this.region;
     }
 
