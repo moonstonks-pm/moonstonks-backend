@@ -1,0 +1,97 @@
+{
+  "MetaData": {
+    "sector": [
+      {
+        "name": "IT",
+        "share": 12
+      },
+      {
+        "name": "Finance",
+        "share": 13
+      },
+      {
+        "name": "Healthcare",
+        "share": 9
+      },
+      {
+        "name": "Industry",
+        "share": 21
+      },
+      {
+        "name": "Real estate",
+        "share": 9
+      },
+      {
+        "name": "Supplier",
+        "share": 5
+      },
+      {
+        "name": "Material",
+        "share": 7
+      },
+      {
+        "name": "Communication Services",
+        "share": 4
+      }
+    ],
+    "industry": [
+      {
+        "name": "Hardware",
+        "share": 13
+      },
+      {
+        "name": "Financial institutions",
+        "share": 13
+      },
+      {
+        "name": "Health service",
+        "share": 9
+      },
+      {
+        "name": "Conglomerates",
+        "share": 21
+      },
+      {
+        "name": "Telecommunication services",
+        "share": 4
+      },
+      {
+        "name": "Real-estate management and development",
+        "share": 9
+      },
+      {
+        "name": "Chemistry",
+        "share": 7
+      },
+      {
+        "name": "Supply",
+        "share": 5
+      }
+    ],
+    "region": [
+      {
+        "name": "EU",
+        "share": 99
+      }
+    ],
+    "country": [
+      {
+        "name": "Germany",
+        "share": 27
+      },
+      {
+        "name": "France",
+        "share": 14
+      },
+      {
+        "name": "Italy",
+        "share": 14
+      },
+      {
+        "name": "Netherlands",
+        "share": 11
+      }
+    ],
+    "securityType": "ETF"
+  }
+}
