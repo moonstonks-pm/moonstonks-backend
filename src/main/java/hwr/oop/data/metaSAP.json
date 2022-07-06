@@ -23,6 +23,7 @@
         "name": "Germany",
         "share": 100
       }
-    ]
+    ],
+    "securityType": "Stock"
   }
 }

@@ -44,20 +44,70 @@
         "share": 19
       },
       {
-        "name": "Finance"
+        "name": "Financial institutions",
+        "share": 14
+      },
+      {
+        "name": "Health service",
+        "share": 14
+      },
+      {
+        "name": "Conglomerates",
+        "share": 10
+      },
+      {
+        "name": "Telecommunication services",
+        "share": 9
+      },
+      {
+        "name": "Foodstuff",
+        "share": 8
+      },
+      {
+        "name": "Chemistry",
+        "share": 4
+      },
+      {
+        "name": "Utilities",
+        "share": 3
+      },
+      {
+        "name": "Energy Equipment",
+        "share": 3
       }
     ],
     "region": [
       {
         "name": "NA",
-        "share": 100
+        "share": 72
+      },
+      {
+        "name": "EU",
+        "share": 18
+      },
+      {
+        "name": "AS",
+        "share": 7
+      },
+      {
+        "name": "OA",
+        "share": 2
       }
     ],
     "country": [
       {
         "name": "USA",
-        "share": 100
+        "share": 69
+      },
+      {
+        "name": "Japan",
+        "share": 6
+      },
+      {
+        "name": "UK",
+        "share": 4
       }
-    ]
+    ],
+    "securityType": "ETF"
   }
 }

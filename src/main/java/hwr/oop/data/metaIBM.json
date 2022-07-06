@@ -23,6 +23,7 @@
         "name": "USA",
         "share": 100
       }
-    ]
+    ],
+    "securityType": "Stock"
   }
 }
