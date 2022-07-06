@@ -24,13 +24,13 @@ public class MoonStonksTest {
 
             @Test
           void getSharePrice_retrievesCorrectData(){
-                    assertThat(SharePriceData.getShareCurrentPrice("SAP", "2022-06-21"))
+                    assertThat(SharePriceData.getSharePrice("SAP", "2022-06-21"))
                             .isEqualTo(120.42);
             }
 
             @Test
           void getCurrentSharePrice_retrievesCorrectData(){
-                    assertThat(SharePriceData.getShareCurrentPrice("SAP")).isEqualTo(89.69);
+                    assertThat(SharePriceData.getCurrentSharePrice("SAP")).isEqualTo(89.69);
             }
     }
 

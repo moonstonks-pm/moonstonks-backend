@@ -20,14 +20,14 @@ public class PortfolioPosition {
 
     void addShare(String purchaseDate, int numberOfSharesBought){
         for(int i = 0; i < numberOfSharesBought; i++) {
-            shares.add(SharePriceData.getShareCurrentPrice(securityAcronym, purchaseDate));
+            shares.add(SharePriceData.getSharePrice(securityAcronym, purchaseDate));
         }
     }
 
     void removeShare(int numberOfSharesSold){
         for(int i = 0; i < numberOfSharesSold; i++) {
             priceGainsRealized +=
-                    SharePriceData.getShareCurrentPrice(securityAcronym) - shares.poll();
+                    SharePriceData.getCurrentSharePrice(securityAcronym) - shares.poll();
         }
     }
 
@@ -44,7 +44,7 @@ public class PortfolioPosition {
     }
 
     double getCurrentValue(){
-        return SharePriceData.getShareCurrentPrice(securityAcronym) * shares.size();
+        return SharePriceData.getCurrentSharePrice(securityAcronym) * shares.size();
     }
 
     boolean isEmpty(){

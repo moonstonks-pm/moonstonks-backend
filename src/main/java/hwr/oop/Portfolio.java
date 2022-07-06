@@ -9,7 +9,7 @@ public class Portfolio {
 
     private HashMap<String, PortfolioPosition> portfolio;
 
-    private static final String[] securitiesAvailableArray = new String[]{"SAP"};
+    private static final String[] securitiesAvailableArray = new String[]{"SAP", "IBM", "DAI"};
 
     private static final HashSet<String> securitiesAvailable =
             new HashSet<>(Arrays.asList(securitiesAvailableArray));
@@ -18,19 +18,23 @@ public class Portfolio {
         this.portfolio = new HashMap<>();
     }
 
-    public void buyShares(String companyAcronym, String purchaseDate, int numberOfShares){
-        if(!securitiesAvailable.contains(companyAcronym))
+    public void buyShares(String securityAcronym, String purchaseDate, int numberOfShares){
+        securityAcronym = securityAcronym.toUpperCase();
+
+        if(!new StockSearch(securityAcronym).securityIsAvailable())
             throw new RuntimeException("Security paper not available!");
         if(numberOfShares < 1)
             throw new RuntimeException("Invalid number of shares");
 
-        if(!portfolio.containsKey(companyAcronym)){
-            portfolio.put(companyAcronym,new PortfolioPosition(companyAcronym));
+        if(!portfolio.containsKey(securityAcronym)){
+            portfolio.put(securityAcronym,new PortfolioPosition(securityAcronym));
         }
-        portfolio.get(companyAcronym).addShare(purchaseDate, numberOfShares);
+        portfolio.get(securityAcronym).addShare(purchaseDate, numberOfShares);
     }
 
     public void sellShares(String companyAcronym, int numberOfShares){
+        companyAcronym = companyAcronym.toUpperCase();
+
         if(!portfolio.containsKey(companyAcronym))
             throw new RuntimeException("You don't own that security paper!");
         if(numberOfShares > portfolio.get(companyAcronym).getPositionSize())
