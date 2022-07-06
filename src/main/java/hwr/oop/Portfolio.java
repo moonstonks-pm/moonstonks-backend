@@ -1,9 +1,6 @@
 package hwr.oop;
 
-import javax.sound.sampled.Port;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Portfolio {
 
@@ -51,6 +48,14 @@ public class Portfolio {
             totalValue+= position.getCurrentValue();
         }
         return totalValue;
+    }
+
+    HashMap<String, Double> getPositionValues(){
+        HashMap<String, Double> analysis = new HashMap<>();
+        for(String key : portfolio.keySet()){
+            analysis.put(key, portfolio.get(key).getCurrentValue());
+        }
+        return analysis;
     }
 
     public boolean hasSecurity(String securityAcronym) {

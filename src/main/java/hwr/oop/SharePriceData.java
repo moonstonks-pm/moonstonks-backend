@@ -7,7 +7,7 @@ import java.io.FileReader;
 import java.io.Reader;
 
 //W6PWPCMUGT51Z4O1
-class SharePriceData {  //maybe create object so i dont have to pass acronym all the time
+class SharePriceData {
     static double getSharePrice(String securityAcronym, String purchaseDate) {
         try {
             JSONParser parser = new JSONParser();
