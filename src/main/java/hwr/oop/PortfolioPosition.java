@@ -5,15 +5,12 @@ import java.util.Queue;
 
 public class PortfolioPosition {
 
-    private final ShareMetaData metaData;
-
     private final String securityAcronym;
     private double priceGainsRealized;
     private Queue<Double> shares;
 
     PortfolioPosition(String securityAcronym){
         this.securityAcronym = securityAcronym;
-        metaData = new ShareMetaData(securityAcronym);  //do I really need this here?
         shares = new LinkedList<Double>();
 
     }

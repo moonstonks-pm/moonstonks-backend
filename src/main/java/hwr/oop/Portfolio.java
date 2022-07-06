@@ -7,12 +7,8 @@ import java.util.HashSet;
 
 public class Portfolio {
 
+    private static final int minNumberOfSharesToBeBought = 1;
     private HashMap<String, PortfolioPosition> portfolio;
-
-    private static final String[] securitiesAvailableArray = new String[]{"SAP", "IBM", "DAI"};
-
-    private static final HashSet<String> securitiesAvailable =
-            new HashSet<>(Arrays.asList(securitiesAvailableArray));
 
     public Portfolio(){ //maybe add name of owner or sth
         this.portfolio = new HashMap<>();
@@ -23,27 +19,29 @@ public class Portfolio {
 
         if(!new StockSearch(securityAcronym).securityIsAvailable())
             throw new RuntimeException("Security paper not available!");
-        if(numberOfShares < 1)
+
+        if(numberOfShares < minNumberOfSharesToBeBought)
             throw new RuntimeException("Invalid number of shares");
 
-        if(!portfolio.containsKey(securityAcronym)){
+        if(!this.hasSecurity(securityAcronym)){
             portfolio.put(securityAcronym,new PortfolioPosition(securityAcronym));
         }
         portfolio.get(securityAcronym).addShare(purchaseDate, numberOfShares);
     }
 
-    public void sellShares(String companyAcronym, int numberOfShares){
-        companyAcronym = companyAcronym.toUpperCase();
+    public void sellShares(String securityAcronym, int numberOfShares){
+        securityAcronym = securityAcronym.toUpperCase();
 
-        if(!portfolio.containsKey(companyAcronym))
+        if(!this.hasSecurity(securityAcronym))
             throw new RuntimeException("You don't own that security paper!");
-        if(numberOfShares > portfolio.get(companyAcronym).getPositionSize())
+
+        if(numberOfShares > portfolio.get(securityAcronym).getPositionSize())
             throw new RuntimeException("You don't own this many shares");
 
-        portfolio.get(companyAcronym).removeShare(numberOfShares);
+        portfolio.get(securityAcronym).removeShare(numberOfShares);
 
-        if(portfolio.get(companyAcronym).isEmpty()){
-            portfolio.remove(companyAcronym);
+        if(portfolio.get(securityAcronym).isEmpty()){
+            portfolio.remove(securityAcronym);
         }
     }
 
@@ -55,11 +53,16 @@ public class Portfolio {
         return totalValue;
     }
 
+    public boolean hasSecurity(String securityAcronym) {
+        return portfolio.containsKey(securityAcronym);
+    }
+
     public void output(){
         for(String key : portfolio.keySet()){ //ToDo correct formatting and maybe add analytics
             System.out.println(key + "| Amount Deposited: " + portfolio.get(key).getAmountDeposited() +
                     "| Current Value: " + portfolio.get(key).getCurrentValue() +
-                    "| price Gains: " + (portfolio.get(key).getCurrentValue() - portfolio.get(key).getAmountDeposited()) +
+                    String.format("| price Gains:  %.2f",
+                            (portfolio.get(key).getCurrentValue() - portfolio.get(key).getAmountDeposited())) +
                     "| buy in: " + (portfolio.get(key).getAmountDeposited() / portfolio.get(key).getPositionSize()) +
                     "| # of Shares: " + portfolio.get(key).getPositionSize());
         }

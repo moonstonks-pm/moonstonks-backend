@@ -1,20 +1,30 @@
 package hwr.oop;
 
+import java.util.HashMap;
+
 class ShareMetaData {
 
-    private final String[] sector;
-    private final String[] industry;
-    private final String[] region;
-    private final String[] country;
+    private final HashMap<String, Double> sector;
+    private final HashMap<String, Double> industry;
+    private final HashMap<String, Double> region;
+    private final HashMap<String, Double> country;
     private final String securityAcronym;
     private final String securityType;
 
-    ShareMetaData(String securityAcronym) {
+    ShareMetaData(String securityAcronym) {  //  ToDo get constructor information from JSON-File API
         this.securityAcronym = securityAcronym;
-        this.industry= new String[]{"Software"}; //  ToDo get constructor information from JSON-File API
-        this.sector = new String[]{"IT"};
-        this.country = new String[]{"Germany"};
-        this.region = new String[]{"Europe"};
+        this.industry= new HashMap<>(){{
+            put("it", 100.0);
+        }};
+        this.sector = new HashMap<>(){{
+            put("software", 100.0);
+        }};
+        this.country = new HashMap<>(){{
+            put("germany", 100.0);
+        }};
+        this.region =  new HashMap<>(){{
+            put("europe", 100.0);
+        }};
         this.securityType = "Stock";
     }
     String[] getSector() {
