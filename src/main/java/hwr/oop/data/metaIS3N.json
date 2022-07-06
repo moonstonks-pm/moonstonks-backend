@@ -1,0 +1,125 @@
+{
+  "MetaData": {
+    "sector": [
+      {
+        "name": "IT",
+        "share": 21
+      },
+      {
+        "name": "Finance",
+        "share": 18
+      },
+      {
+        "name": "Non-consumer staples",
+        "share": 15
+      },
+      {
+        "name": "Communication",
+        "share": 11
+      },
+      {
+        "name": "Material",
+        "share": 9
+      },
+      {
+        "name": "Industry",
+        "share": 6
+      },
+      {
+        "name": "Healthcare",
+        "share": 5
+      },
+      {
+        "name": "Consumer staples",
+        "share": 5
+      },
+      {
+        "name": "Energy",
+        "share": 5
+      },
+      {
+        "name": "Real estate",
+        "share": 2
+      },
+      {
+        "name": "Provider",
+        "share": 2
+      }
+    ],
+    "industry": [
+      {
+        "name": "Hardware",
+        "share": 21
+      },
+      {
+        "name": "Financial institutions",
+        "share": 18
+      },
+      {
+        "name": "Health service",
+        "share": 5
+      },
+      {
+        "name": "Conglomerates",
+        "share": 6
+      },
+      {
+        "name": "Telecommunication services",
+        "share": 10
+      },
+      {
+        "name": "Foodstuff",
+        "share": 8
+      },
+      {
+        "name": "Chemistry",
+        "share": 9
+      },
+      {
+        "name": "Equity-REIT",
+        "share": 3
+      },
+      {
+        "name": "Durable household goods",
+        "share": 15
+      }
+    ],
+    "region": [
+      {
+        "name": "NA",
+        "share": 2
+      },
+      {
+        "name": "EU",
+        "share": 4
+      },
+      {
+        "name": "AS",
+        "share": 84
+      },
+      {
+        "name": "SA",
+        "share": 5
+      },
+      {
+        "name": "AF",
+        "share": 4
+      }
+    ],
+    "country": [
+      {
+        "name": "China",
+        "share": 30
+      },
+      {
+        "name": "Taiwan",
+        "share": 17
+      },
+      {
+        "name": "Korea",
+        "share": 12
+      }
+    ],
+    "securityType": "ETF"
+  }
+}
