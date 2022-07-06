@@ -1,0 +1,63 @@
+{
+  "MetaData": {
+    "sector": [
+      {
+        "name": "IT",
+        "share": 19
+      },
+      {
+        "name": "Finance",
+        "share": 14
+      },
+      {
+        "name": "Healthcare",
+        "share": 14
+      },
+      {
+        "name": "Industry",
+        "share": 10
+      },
+      {
+        "name": "Communication",
+        "share": 9
+      },
+      {
+        "name": "Consumer staples",
+        "share": 8
+      },
+      {
+        "name": "Material",
+        "share": 4
+      },
+      {
+        "name": "Provider",
+        "share": 3
+      },
+      {
+        "name": "Energy",
+        "share": 3
+      }
+    ],
+    "industry": [
+      {
+        "name": "Hardware",
+        "share": 19
+      },
+      {
+        "name": "Finance"
+      }
+    ],
+    "region": [
+      {
+        "name": "NA",
+        "share": 100
+      }
+    ],
+    "country": [
+      {
+        "name": "USA",
+        "share": 100
+      }
+    ]
+  }
+}

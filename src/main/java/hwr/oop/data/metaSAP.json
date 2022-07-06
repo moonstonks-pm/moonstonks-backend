@@ -1,0 +1,28 @@
+{
+  "MetaData": {
+    "sector": [
+      {
+        "name": "IT",
+        "share": 100
+      }
+    ],
+    "industry": [
+      {
+        "name": "Software",
+        "share": 100
+      }
+    ],
+    "region": [
+      {
+        "name": "EU",
+        "share": 100
+      }
+    ],
+    "country": [
+      {
+        "name": "Germany",
+        "share": 100
+      }
+    ]
+  }
+}
