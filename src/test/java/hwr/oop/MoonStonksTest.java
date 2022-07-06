@@ -25,7 +25,7 @@ public class MoonStonksTest {
             @Test
           void getSharePrice_retrievesCorrectData(){
                     assertThat(SharePriceData.getSharePrice("SAP", "2022-06-21"))
-                            .isEqualTo(120.42);
+                            .isEqualTo(89.5000);
             }
 
             @Test
