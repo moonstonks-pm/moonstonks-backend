@@ -15,7 +15,7 @@ class SharePriceData {
 
     static JSONObject readJsonFile(String type, String securityAcronym) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        Reader reader = new FileReader("src/main/java/hwr/oop/data/"+ type+ "/" + type + securityAcronym + ".json");
+        Reader reader = new FileReader("src/main/java/hwr/oop/data/"+ type + "/" + type + securityAcronym + ".json");
         Object jsonObj = parser.parse(reader);
         JSONObject jsonObject = (JSONObject) jsonObj;
         return jsonObject;
