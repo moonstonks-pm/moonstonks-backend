@@ -1,6 +1,10 @@
 package hwr.oop;
 
+import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.*;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -11,8 +15,8 @@ public class MoonStonksTest {
     private Portfolio n;
 
        @BeforeEach
-        private void setUp(){
-            sap = new ShareMetaData("SAP");
+        private void setUp() throws IOException, ParseException {
+            sap = new ShareMetaData("SAP"); //SAP belongs here
             n = new Portfolio();
         }
 
@@ -38,13 +42,13 @@ public class MoonStonksTest {
         class ShareMetaDataTest {  //ToDo name expected outputs w/ variables for better understanding
 
             @Test
-            void getIndustry_retrievesCorrectIndustry(){
-                assertThat(sap.getIndustry()).isEqualTo(new String[]{"Software"});
+            void getIndustry_retrievesCorrectIndustry() throws IOException, ParseException {
+                assertThat(ShareMetaData.getIndustry("SAP")).isEqualTo(new HashMap<String, Double>(){{put("Software", 100.0);}});
             }
 
             @Test
-            void getSector_retrievesCorrectSectors(){
-                assertThat(sap.getSector()).isEqualTo(new String[]{"IT"});
+            void getSector_retrievesCorrectSectors() throws IOException, ParseException {
+                assertThat(ShareMetaData.getSector("SAP")).isEqualTo(new HashMap<String, Double>(){{put("IT", 100.0);}});
             }
 
             @Test

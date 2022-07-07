@@ -10,7 +10,7 @@ import java.io.Reader;
 
 //W6PWPCMUGT51Z4O1
 class SharePriceData {
-    private static JSONObject readJsonFile(String type, String securityAcronym) throws IOException, ParseException {
+    static JSONObject readJsonFile(String type, String securityAcronym) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         Reader reader = new FileReader("src/main/java/hwr/oop/data/" + type + securityAcronym + ".json");
         Object jsonObj = parser.parse(reader);
