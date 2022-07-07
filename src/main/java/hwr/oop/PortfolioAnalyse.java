@@ -8,47 +8,43 @@ import java.util.HashMap;
 public class PortfolioAnalyse {
 
     private Portfolio portfolio;
-    private HashMap<String, Double> positionValue;
+    private HashMap<String, Double> positions;
 
     private double portfolioValue;
     PortfolioAnalyse(Portfolio portfolio) {
         this.portfolio = portfolio;
-        this.positionValue = portfolio.getPositionValues();
+        this.positions = portfolio.getPositionValues();
         this.portfolioValue = portfolio.value();
 
     }
 
-    private HashMap<String, Double> regionAllocation() throws IOException, ParseException {
-        HashMap<String, Double> regionAllocation = new HashMap<>();
-        for(String securityAcronym: positionValue.keySet()) {
-           for(String region: ShareMetaData.getRegion(securityAcronym).keySet()){
-               if(!regionAllocation.containsKey(region)){
-                   regionAllocation.put(region,
-                           positionValue.get(securityAcronym) * (ShareMetaData.getRegion(securityAcronym).get(region) / 100));
-               }
-           }
-        }
-        return regionAllocation;
-    }
+    HashMap<String, Double> allocation() throws IOException, ParseException {
+        HashMap<String, Double> allocation = new HashMap<>();
 
-    private HashMap<String, Double> securityTypeAllocation() throws IOException, ParseException {
-        HashMap<String, Double> securityTypeAllocation = new HashMap<>();
-        for(String key: positionValue.keySet()) {
-            if(!securityTypeAllocation.containsKey(ShareMetaData.getSecurityType(key))){
-                securityTypeAllocation.put(ShareMetaData.getSecurityType(key), positionValue.get(key));
-            }else{
-                securityTypeAllocation.computeIfPresent(ShareMetaData.getSecurityType(key),
-                        (securityType, overallValue) -> overallValue += positionValue.get(key));
+        for (String securityAcronym : positions.keySet()) { //Bsp: "MSCI World"
+            IShareMetaData metaData = new RegionData(securityAcronym);
+            double positionValue = positions.get(securityAcronym);
+
+            for (String region : metaData.allocationData().keySet()) {
+                double regionPercentage = metaData.allocationData().get(region) / 100;
+                if (!allocation.containsKey(region)) {
+                    allocation.put(region,
+                            positionValue * regionPercentage);
+                } else {
+                    allocation.computeIfPresent(region, (regionKey, regionValue) ->
+                            regionValue += positionValue * regionPercentage);
+                }
             }
         }
-        return securityTypeAllocation;
+        return allocation;
     }
 
+
     public void analyse() throws IOException, ParseException {
-        HashMap<String, Double> securityTypeAllocation = securityTypeAllocation();
-        for(String key: securityTypeAllocation.keySet()){
+        HashMap<String, Double> allocation = allocation();
+        for(String key: allocation.keySet()){
             System.out.println(key + ": " +
-                    String.format("%.2f",((securityTypeAllocation.get(key) / portfolioValue)*100)));
+                    String.format("%.2f",((allocation.get(key) / portfolioValue)*100)));
         }
     }
 

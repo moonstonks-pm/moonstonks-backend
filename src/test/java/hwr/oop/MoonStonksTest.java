@@ -137,7 +137,7 @@ public class MoonStonksTest {
             @Test
             void securityTypeAllocation_showsCorrectAllocation() throws IOException, ParseException {
                 n.buyShares("SAP", "2022-05-26", 4);
-                n.buyShares("SXRJ", "2022-02-01", 7);
+                n.buyShares("EUNL", "2022-02-01", 7);
                 PortfolioAnalyse a = new PortfolioAnalyse(n);
                 a.analyse();
 
