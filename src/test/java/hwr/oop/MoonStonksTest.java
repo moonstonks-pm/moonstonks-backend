@@ -59,11 +59,11 @@ public class MoonStonksTest {
             void getRegion_retrievesCorrectRegion() throws IOException, ParseException {
                 assertThat(ShareMetaData.getRegion("SAP")).isEqualTo(new HashMap<String, Double>(){{put("EU", 100.0);}});
             }
-            /*
+
             @Test
-            void getSecurityType_retrievesCorrectType(){
-                assertThat(sap.getSecurityType()).isEqualTo("Stock");
-            }*/
+            void getSecurityType_retrievesCorrectType() throws IOException, ParseException {
+                assertThat(ShareMetaData.getSecurityType("SAP")).isEqualTo("Stock");
+            }
         }
         @Nested
         class PortfolioTest{

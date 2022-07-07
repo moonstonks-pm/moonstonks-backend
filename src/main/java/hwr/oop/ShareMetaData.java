@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 class ShareMetaData extends SharePriceData {
-    static HashMap<String, Double> getSector(String securityAcronym) throws IOException, ParseException { //TODO Care for sector
+    static HashMap<String, Double> getSector(String securityAcronym) throws IOException, ParseException {
         return metaDataHashMap(securityAcronym, "sector");
     }
 
@@ -24,9 +24,12 @@ class ShareMetaData extends SharePriceData {
         return metaDataHashMap(securityAcronym, "region");
     }
 
-    /*String getSecurityType(String securityAcronym) throws IOException, ParseException {
+    static String getSecurityType(String securityAcronym) throws IOException, ParseException {
+        JSONObject metaData = (JSONObject) SharePriceData.readJsonFile("meta", securityAcronym).get("MetaData");
+        String securityType = (String) metaData.get("securityType");
 
-    }*/
+        return securityType;
+    }
 
     private static HashMap<String, Double> metaDataHashMap(String securityAcronym, String metaDataName) throws IOException, ParseException {
         return new HashMap<>(){{

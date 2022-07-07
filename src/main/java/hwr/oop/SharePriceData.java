@@ -20,7 +20,7 @@ class SharePriceData {
     static double getSharePrice(String securityAcronym, String purchaseDate) {
         try {
             JSONObject timeSeries = (JSONObject) readJsonFile("daily", securityAcronym).get("Time Series (Daily)");
-            JSONObject date = (JSONObject) timeSeries.get(purchaseDate) ;
+            JSONObject date = (JSONObject) timeSeries.get(purchaseDate);
             String price = (String) date.get("1. open");
             double priceDouble = Double.parseDouble(price);
             return priceDouble;
