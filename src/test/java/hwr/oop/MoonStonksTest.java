@@ -16,7 +16,6 @@ public class MoonStonksTest {
 
        @BeforeEach
         private void setUp() throws IOException, ParseException {
-            sap = new ShareMetaData(); //SAP belongs here
             n = new Portfolio();
         }
 
@@ -134,6 +133,17 @@ public class MoonStonksTest {
                 assertThat(p.value()).isEqualTo(0);
             }
 
+        }
+        @Nested
+        class PortfolioAnalysis{
+            @Test
+            void securityTypeAllocation_showsCorrectAllocation() throws IOException, ParseException {
+                n.buyShares("SAP", "2022-05-26", 4);
+                n.buyShares("SXRJ", "2022-02-01", 7);
+                PortfolioAnalyse a = new PortfolioAnalyse(n);
+                a.analyse();
+
+            }
         }
 
         @Nested

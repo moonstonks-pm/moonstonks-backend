@@ -18,7 +18,7 @@ public class PortfolioAnalyse {
 
     }
 
-    public String SecurityTypeAllocation() throws IOException, ParseException {
+    private HashMap<String, Double> securityTypeAllocation() throws IOException, ParseException {
         HashMap<String, Double> securityTypeAllocation = new HashMap<>();
         for(String key: positionValue.keySet()) {
             if(!securityTypeAllocation.containsKey(ShareMetaData.getSecurityType(key))){
@@ -28,7 +28,15 @@ public class PortfolioAnalyse {
                         (securityType, overallValue) -> overallValue += positionValue.get(key));
             }
         }
-        return securityTypeAllocation.toString();
+        return securityTypeAllocation;
+    }
+
+    public void analyse() throws IOException, ParseException {
+        HashMap<String, Double> securityTypeAllocation = securityTypeAllocation();
+        for(String key: securityTypeAllocation.keySet()){
+            System.out.println(key + ": " +
+                    String.format("%.2f",((securityTypeAllocation.get(key) / portfolioValue)*100)));
+        }
     }
 
 }
