@@ -10,8 +10,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class MoonStonksTest {
 
-    private ShareMetaData sap;
-
     private Portfolio n;
 
        @BeforeEach
