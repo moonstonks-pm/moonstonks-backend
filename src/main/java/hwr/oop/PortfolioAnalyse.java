@@ -18,6 +18,19 @@ public class PortfolioAnalyse {
 
     }
 
+    private HashMap<String, Double> regionAllocation() throws IOException, ParseException {
+        HashMap<String, Double> regionAllocation = new HashMap<>();
+        for(String securityAcronym: positionValue.keySet()) {
+           for(String region: ShareMetaData.getRegion(securityAcronym).keySet()){
+               if(!regionAllocation.containsKey(region)){
+                   regionAllocation.put(region,
+                           positionValue.get(securityAcronym) * (ShareMetaData.getRegion(securityAcronym).get(region) / 100));
+               }
+           }
+        }
+        return regionAllocation;
+    }
+
     private HashMap<String, Double> securityTypeAllocation() throws IOException, ParseException {
         HashMap<String, Double> securityTypeAllocation = new HashMap<>();
         for(String key: positionValue.keySet()) {

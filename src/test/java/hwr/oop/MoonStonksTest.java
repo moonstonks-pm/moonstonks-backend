@@ -59,7 +59,7 @@ public class MoonStonksTest {
 
             @Test
             void getSecurityType_retrievesCorrectType() throws IOException, ParseException {
-                assertThat(ShareMetaData.getSecurityType("SAP")).isEqualTo("Stock");
+                assertThat(ShareMetaData.getRegion("SAP")).isEqualTo("Stock");
             }
         }
         @Nested
