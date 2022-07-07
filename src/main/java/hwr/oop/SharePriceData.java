@@ -7,9 +7,12 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 //W6PWPCMUGT51Z4O1
 class SharePriceData {
+
     static JSONObject readJsonFile(String type, String securityAcronym) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
         Reader reader = new FileReader("src/main/java/hwr/oop/data/" + type + securityAcronym + ".json");
@@ -23,6 +26,7 @@ class SharePriceData {
             JSONObject date = (JSONObject) timeSeries.get(purchaseDate);
             String price = (String) date.get("1. open");
             double priceDouble = Double.parseDouble(price);
+            BigDecimal bd=new BigDecimal(priceDouble).setScale(2, RoundingMode.HALF_DOWN);
             return priceDouble;
         } catch(Exception e) {
             e.printStackTrace();

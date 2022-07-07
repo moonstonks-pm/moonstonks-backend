@@ -53,6 +53,15 @@ public class Portfolio {
         return totalValue;
     }
 
+    public HashMap<String, Double> getPositionValues() {
+        HashMap<String, Double> positionValues = new HashMap();
+        for(String key : portfolio.keySet()){
+            positionValues.put(key, portfolio.get(key).getCurrentValue());
+        }
+        return positionValues;
+    }
+
+
     public boolean hasSecurity(String securityAcronym) {
         return portfolio.containsKey(securityAcronym);
     }
@@ -67,4 +76,6 @@ public class Portfolio {
                     "| # of Shares: " + portfolio.get(key).getPositionSize());
         }
     }
+
+
 }
