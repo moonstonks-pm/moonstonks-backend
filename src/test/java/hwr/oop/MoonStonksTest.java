@@ -16,7 +16,7 @@ public class MoonStonksTest {
 
        @BeforeEach
         private void setUp() throws IOException, ParseException {
-            sap = new ShareMetaData("SAP"); //SAP belongs here
+            sap = new ShareMetaData(); //SAP belongs here
             n = new Portfolio();
         }
 
@@ -39,7 +39,7 @@ public class MoonStonksTest {
     }
 
         @Nested
-        class ShareMetaDataTest {  //ToDo name expected outputs w/ variables for better understanding
+        class ShareMetaDataTest {
 
             @Test
             void getIndustry_retrievesCorrectIndustry() throws IOException, ParseException {
@@ -52,18 +52,18 @@ public class MoonStonksTest {
             }
 
             @Test
-            void getCountry_retrievesCorrectCountry(){
-                assertThat(sap.getCountry()).isEqualTo(new String[]{"Germany"});
+            void getCountry_retrievesCorrectCountry() throws IOException, ParseException {
+                assertThat(ShareMetaData.getCountry("SAP")).isEqualTo(new HashMap<String, Double>(){{put("Germany", 100.0);}});
             }
             @Test
-            void getRegion_retrievesCorrectRegion(){
-                assertThat(sap.getRegion()).isEqualTo(new String[]{"Europe"});
+            void getRegion_retrievesCorrectRegion() throws IOException, ParseException {
+                assertThat(ShareMetaData.getRegion("SAP")).isEqualTo(new HashMap<String, Double>(){{put("EU", 100.0);}});
             }
-
+            /*
             @Test
             void getSecurityType_retrievesCorrectType(){
                 assertThat(sap.getSecurityType()).isEqualTo("Stock");
-            }
+            }*/
         }
         @Nested
         class PortfolioTest{
