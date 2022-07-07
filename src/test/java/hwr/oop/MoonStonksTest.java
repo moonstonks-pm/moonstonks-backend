@@ -20,7 +20,7 @@ public class MoonStonksTest {
            private void reset(){
            }*/
         @Nested
-        class SharePriceDataTest {  //basically retrieve data test //ToDo test with real data when class is implemented correctly
+        class SharePriceDataTest {  //basically retrieve data test
 
             @Test
           void getSharePrice_retrievesCorrectData(){
@@ -30,7 +30,7 @@ public class MoonStonksTest {
 
             @Test
           void getCurrentSharePrice_retrievesCorrectData(){
-                    assertThat(SharePriceData.getCurrentSharePrice("SAP")).isEqualTo(89.69);
+                    assertThat(SharePriceData.getCurrentSharePrice("SAP")).isEqualTo(87.34);
             }
     }
 
