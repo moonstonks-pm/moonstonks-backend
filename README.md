@@ -8,7 +8,7 @@ This repository contains a student project created for an ongoing lecture on obj
 
 ## Abstract
 
-This project aims to model a share portfolio analysis tool. We referenced this tool for functionalitie: https://app.parqet.com/p/5f55425d139fc90007978e75
+This project aims to model a share portfolio analysis tool. We referenced this tool for functionalities: https://app.parqet.com/p/5f55425d139fc90007978e75
 ## Feature List
 
 [TODO]: # (For each feature implemented, add a row to the table!)
