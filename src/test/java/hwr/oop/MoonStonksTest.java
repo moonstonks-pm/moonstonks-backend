@@ -226,13 +226,13 @@ public class MoonStonksTest {
 
         @Test
         void monthlyCourseDifferenceIsCorrect() throws IOException, ParseException {
-            System.out.println(ss.monthlyCourseDifference("2021-09-30"));
             assertThat(ss.monthlyCourseDifference("2021-09-30")).isEqualTo(-8.83);
         }
 
         @Test
         void maxCourseDifferenceTest() throws IOException, ParseException {
             System.out.println(ss.maxCourseDifference());
+            assertThat(ss.maxCourseDifference()).isEqualTo("-52.79");
         }
     }
 }
