@@ -7,13 +7,18 @@ import java.util.HashMap;
 
 public class SectorData implements IShareMetaData{
 
-    private final String securityAcronym;
+    private final String metaDataName;
+    private String securityAcronym;
 
-    SectorData(String securityAcronym){
+    SectorData(){
+        this.metaDataName = "sector";
+    }
+
+    public void setSecurityAcronym(String securityAcronym){
         this.securityAcronym = securityAcronym;
     }
     @Override
     public HashMap<String, Double> allocationData() throws IOException, ParseException {
-        return MetaDataHashMap.metaDataHashMap(securityAcronym, "sector");
+        return MetaDataHashMap.metaDataHashMap(securityAcronym, metaDataName);
     }
 }

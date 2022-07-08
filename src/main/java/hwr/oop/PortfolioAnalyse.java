@@ -18,11 +18,36 @@ public class PortfolioAnalyse {
 
     }
 
-    HashMap<String, Double> allocation() throws IOException, ParseException {
+    public String regionAllocation() throws IOException, ParseException {
+        IShareMetaData regionData = new RegionData();
+        return stringifyAllocationData(allocation(regionData));
+    }
+
+    public String countryAllocation() throws IOException, ParseException {
+        IShareMetaData countryData = new CountryData();
+        return stringifyAllocationData(allocation(countryData));
+    }
+
+    public String industryAllocation() throws IOException, ParseException {
+        IShareMetaData industryData = new IndustryData();
+        return stringifyAllocationData(allocation(industryData));
+    }
+
+    public String sectorAllocation() throws IOException, ParseException {
+        IShareMetaData sectorData = new SectorData();
+        return stringifyAllocationData(allocation(sectorData));
+    }
+
+    public String securityTypeAllocation() throws IOException, ParseException {
+        IShareMetaData securityType = new SecurityTypeData();
+        return stringifyAllocationData(allocation(securityType));
+    }
+
+    private HashMap<String, Double> allocation(IShareMetaData metaData) throws IOException, ParseException {
         HashMap<String, Double> allocation = new HashMap<>();
 
         for (String securityAcronym : positions.keySet()) { //Bsp: "MSCI World"
-            IShareMetaData metaData = new RegionData(securityAcronym);
+            metaData.setSecurityAcronym(securityAcronym);
             double positionValue = positions.get(securityAcronym);
 
             for (String region : metaData.allocationData().keySet()) {
@@ -40,12 +65,13 @@ public class PortfolioAnalyse {
     }
 
 
-    public void analyse() throws IOException, ParseException {
-        HashMap<String, Double> allocation = allocation();
-        for(String key: allocation.keySet()){
-            System.out.println(key + ": " +
-                    String.format("%.2f",((allocation.get(key) / portfolioValue)*100)));
+    private String stringifyAllocationData(HashMap<String, Double> allocationData) throws IOException, ParseException {
+        String stringifiedAllocationData = "";
+        for(String allocation: allocationData.keySet()){
+            stringifiedAllocationData += allocation + ": " +
+                    String.format("%.2f",((allocationData.get(allocation) / portfolioValue)*100)) + "\n";
         }
+        return stringifiedAllocationData;
     }
 
 }

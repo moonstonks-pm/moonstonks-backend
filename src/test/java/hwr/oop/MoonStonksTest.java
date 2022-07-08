@@ -15,6 +15,8 @@ public class MoonStonksTest {
     private Portfolio n;
     private StockSearch ss;
 
+    private IShareMetaData metaData;
+
     @BeforeEach
     private void setUp() throws IOException, ParseException {
         n = new Portfolio();
@@ -44,35 +46,47 @@ public class MoonStonksTest {
 
         @Test
         void getIndustry_retrievesCorrectIndustry() throws IOException, ParseException {
-            assertThat(ShareMetaData.getIndustry("SAP")).isEqualTo(new HashMap<String, Double>() {{
+            metaData = new IndustryData();
+            metaData.setSecurityAcronym("SAP");
+            assertThat(metaData.allocationData()).isEqualTo(new HashMap<String, Double>() {{
                 put("Software", 100.0);
             }});
         }
 
         @Test
         void getSector_retrievesCorrectSectors() throws IOException, ParseException {
-            assertThat(ShareMetaData.getSector("SAP")).isEqualTo(new HashMap<String, Double>() {{
+            metaData = new SectorData();
+            metaData.setSecurityAcronym("SAP");
+            assertThat(metaData.allocationData()).isEqualTo(new HashMap<String, Double>() {{
                 put("IT", 100.0);
             }});
         }
 
         @Test
         void getCountry_retrievesCorrectCountry() throws IOException, ParseException {
-            assertThat(ShareMetaData.getCountry("SAP")).isEqualTo(new HashMap<String, Double>() {{
+            metaData = new CountryData();
+            metaData.setSecurityAcronym("SAP");
+            assertThat(metaData.allocationData()).isEqualTo(new HashMap<String, Double>() {{
                 put("Germany", 100.0);
             }});
         }
 
         @Test
         void getRegion_retrievesCorrectRegion() throws IOException, ParseException {
-            assertThat(ShareMetaData.getRegion("SAP")).isEqualTo(new HashMap<String, Double>() {{
+            metaData = new RegionData();
+            metaData.setSecurityAcronym("SAP");
+            assertThat(metaData.allocationData()).isEqualTo(new HashMap<String, Double>() {{
                 put("EU", 100.0);
             }});
         }
 
         @Test
         void getSecurityType_retrievesCorrectType() throws IOException, ParseException {
-            assertThat(ShareMetaData.getSecurityType("SAP")).isEqualTo("Stock");
+            metaData = new SecurityTypeData();
+            metaData.setSecurityAcronym("SAP");
+            assertThat(metaData.allocationData()).isEqualTo(new HashMap<String, Double>() {{
+                put("Stock", 100.0);
+            }});
         }
     }
 
@@ -152,10 +166,13 @@ public class MoonStonksTest {
         @Test
         void securityTypeAllocation_showsCorrectAllocation() throws IOException, ParseException {
             n.buyShares("SAP", "2022-05-26", 4);
-            n.buyShares("SXRJ", "2022-02-01", 7);
+            n.buyShares("EUNL", "2022-02-01", 7);
             PortfolioAnalyse a = new PortfolioAnalyse(n);
-            a.analyse();
-
+            System.out.println(a.regionAllocation());
+            System.out.println(a.countryAllocation());
+            System.out.println(a.industryAllocation());
+            System.out.println(a.sectorAllocation());
+            System.out.println(a.securityTypeAllocation());
         }
     }
 

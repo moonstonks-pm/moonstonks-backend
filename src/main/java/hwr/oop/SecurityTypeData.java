@@ -8,19 +8,26 @@ import java.util.HashMap;
 
 public class SecurityTypeData implements IShareMetaData{
 
-    private final String securityAcronym;
+    private final String metaDataType;
+    private String securityAcronym;
 
-    SecurityTypeData(String securityAcronym){
-        this.securityAcronym = securityAcronym;
+    SecurityTypeData(){
+        this.metaDataType = "securityType";
     }
     @Override
     public HashMap<String, Double> allocationData() throws IOException, ParseException {
-        JSONObject metaData = (JSONObject) SharePriceData.readJsonFile("meta", securityAcronym).get("MetaData");
-        String securityType = (String) metaData.get("securityType");
+            JSONObject metaData = (JSONObject) SharePriceData.readJsonFile("meta", securityAcronym).get("MetaData");
+            String securityType = (String) metaData.get(metaDataType);
 
-        return new HashMap<>(){{
-            put(securityType, 100.0);
-        }};
+            return new HashMap<>(){{
+                put(securityType, 100.0);
+            }};
+
+    }
+
+    @Override
+    public void setSecurityAcronym(String securityAcronym) {
+        this.securityAcronym = securityAcronym;
     }
 }
 

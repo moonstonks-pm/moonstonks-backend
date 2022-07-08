@@ -7,13 +7,19 @@ import java.util.HashMap;
 
 public class CountryData implements IShareMetaData{
 
-    private final String securityAcronym;
+    private final String metaData;
+    private String securityAcronym;
 
-    CountryData(String securityAcronym){
-        this.securityAcronym = securityAcronym;
+    CountryData(){
+        this.metaData = "country";
     }
     @Override
     public HashMap<String, Double> allocationData() throws IOException, ParseException {
         return MetaDataHashMap.metaDataHashMap(securityAcronym, "country");
+    }
+
+    @Override
+    public void setSecurityAcronym(String securityAcronym) {
+        this.securityAcronym = securityAcronym;
     }
 }
