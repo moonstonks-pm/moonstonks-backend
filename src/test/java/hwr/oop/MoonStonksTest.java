@@ -12,14 +12,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class MoonStonksTest {
 
-    private Portfolio n;
-    private StockSearch ss;
+    private Portfolio newPortfolio;
+    private StockSearch newStockSearch;
     private IShareMetaData metaData;
 
     @BeforeEach
     private void setUp() throws IOException, ParseException {
-        n = new Portfolio();
-        ss = new StockSearch("sap");
+        newPortfolio = new Portfolio();
+        newStockSearch = new StockSearch("sap");
     }
 
     @Nested
@@ -117,7 +117,7 @@ public class MoonStonksTest {
         void buyShares_throwsExceptionForInvalidSecurityPaper() {
             boolean flag = false;
             try {
-                n.buyShares("APPL", "2022-06-17", 1);
+                newPortfolio.buyShares("APPL", "2022-06-17", 1);
             } catch (Exception e) {
                 assertThat(e).isInstanceOf(RuntimeException.class);
                 flag = true;
@@ -129,7 +129,7 @@ public class MoonStonksTest {
         void buyShares_throwsExceptionForInvalidNumberOfShares() {
             boolean flag = false;
             try {
-                n.buyShares("SAP", "2022-06-17", -1);
+                newPortfolio.buyShares("SAP", "2022-06-17", -1);
             } catch (Exception e) {
                 assertThat(e).isInstanceOf(RuntimeException.class);
                 flag = true;
@@ -139,17 +139,17 @@ public class MoonStonksTest {
 
         @Test
         void buyShares_buyingSharesForFirstTime_CreatesNewKeyValuePair() {
-            Portfolio p = new Portfolio();
-            p.buyShares("SAP", "2022-06-22", 1);
-            assertThat(p.value()).isEqualTo(87.34);
+            Portfolio portfolio = new Portfolio();
+            portfolio.buyShares("SAP", "2022-06-22", 1);
+            assertThat(portfolio.value()).isEqualTo(87.34);
         }
 
         @Test
         void sellShares_throwsExceptionForInvalidSecurityPaper() {
-            Portfolio p = new Portfolio();
+            Portfolio portfolio = new Portfolio();
             boolean flag = false;
             try {
-                p.sellShares("SAP", 1);
+                portfolio.sellShares("SAP", 1);
             } catch (Exception e) {
                 assertThat(e).isInstanceOf(RuntimeException.class);
                 flag = true;
@@ -159,11 +159,11 @@ public class MoonStonksTest {
 
         @Test
         void sellShares_throwsExceptionForInvalidNumberOfShares() {
-            Portfolio p = new Portfolio();
-            p.buyShares("SAP", "2022-06-21", 2);
+            Portfolio portfolio = new Portfolio();
+            portfolio.buyShares("SAP", "2022-06-21", 2);
             boolean flag = false;
             try {
-                p.sellShares("SAP", 3);
+                portfolio.sellShares("SAP", 3);
             } catch (Exception e) {
                 assertThat(e).isInstanceOf(RuntimeException.class);
                 flag = true;
@@ -173,10 +173,10 @@ public class MoonStonksTest {
 
         @Test
         void sellShares_sellingSharesSoThatPortfolioIsEmpty_DeletesKeyValuePair() {
-            Portfolio p = new Portfolio();
-            p.buyShares("SAP", "2022-06-17", 1);
-            p.sellShares("SAP", 1);
-            assertThat(p.isEmpty()).isTrue();
+            Portfolio portfolio = new Portfolio();
+            portfolio.buyShares("SAP", "2022-06-17", 1);
+            portfolio.sellShares("SAP", 1);
+            assertThat(portfolio.isEmpty()).isTrue();
         }
 
     }
@@ -187,8 +187,8 @@ public class MoonStonksTest {
 
         @BeforeEach
         void setUpAnalysis(){
-            n.buyShares("SAP", "2022-05-26", 4);
-            a = new PortfolioAnalyse(n);
+            newPortfolio.buyShares("SAP", "2022-05-26", 4);
+            a = new PortfolioAnalyse(newPortfolio);
         }
         @Test
         void securityTypeAllocation_showsCorrectAllocation() throws IOException, ParseException {
@@ -216,9 +216,9 @@ public class MoonStonksTest {
 
         @Test
         void privateAllocationMethod_worksWithSameAllocationType() throws IOException, ParseException {
-            n.buyShares("EUNL", "2022-04-14", 6);
-            n.buyShares("IS3N", "2022-03-02", 7);
-            a = new PortfolioAnalyse(n);
+            newPortfolio.buyShares("EUNL", "2022-04-14", 6);
+            newPortfolio.buyShares("IS3N", "2022-03-02", 7);
+            a = new PortfolioAnalyse(newPortfolio);
             assertThat(a.securityTypeAllocation()).isEqualTo("ETF: 63,31\nStock: 36,69\n");
         }
     }
@@ -235,8 +235,10 @@ public class MoonStonksTest {
 
         @Test
         void getOutput() {
-            n.buyShares("SAP", "2022-06-21", 2);
-            n.output();
+            newPortfolio.buyShares("SAP", "2022-06-21", 2);
+            newPortfolio.buyShares("EUNL", "2022-06-21", 5);
+            newPortfolio.buyShares("IS3N", "2022-06-21", 8);
+            newPortfolio.output();
         }
 
     }
@@ -245,18 +247,18 @@ public class MoonStonksTest {
     class StockSearchTest {
         @Test
         void weeklyPerCentDifferenceIsCorrect() throws IOException, ParseException {
-            assertThat(ss.weeklyCourseDifferenceInPercent("2022-06-10")).isEqualTo(-5.59);
+            assertThat(newStockSearch.weeklyCourseDifferenceInPercent("2022-06-10")).isEqualTo(-5.59);
         }
 
         @Test
         void monthlyCourseDifferenceIsCorrect() throws IOException, ParseException {
-            assertThat(ss.monthlyCourseDifference("2021-09-30")).isEqualTo(-8.83);
+            assertThat(newStockSearch.monthlyCourseDifference("2021-09-30")).isEqualTo(-8.83);
         }
 
         @Test
         void maxCourseDifferenceTest() throws IOException, ParseException {
-            System.out.println(ss.maxCourseDifference());
-            assertThat(ss.maxCourseDifference()).isEqualTo(-52.79);
+            System.out.println(newStockSearch.maxCourseDifference());
+            assertThat(newStockSearch.maxCourseDifference()).isEqualTo(-52.79);
         }
     }
 }
