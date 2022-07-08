@@ -221,7 +221,18 @@ public class MoonStonksTest {
     class StockSearchTest {
         @Test
         void weeklyPerCentDifferenceIsCorrect() throws IOException, ParseException {
-            System.out.println(ss.weeklyCourseDifferenceInPercent("2022-06-10"));
+            assertThat(ss.weeklyCourseDifferenceInPercent("2022-06-10")).isEqualTo(-5.59);
+        }
+
+        @Test
+        void monthlyCourseDifferenceIsCorrect() throws IOException, ParseException {
+            System.out.println(ss.monthlyCourseDifference("2021-09-30"));
+            assertThat(ss.monthlyCourseDifference("2021-09-30")).isEqualTo(-8.83);
+        }
+
+        @Test
+        void maxCourseDifferenceTest() throws IOException, ParseException {
+            System.out.println(ss.maxCourseDifference());
         }
     }
 }
