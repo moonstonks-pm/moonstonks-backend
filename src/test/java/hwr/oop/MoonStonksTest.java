@@ -232,7 +232,7 @@ public class MoonStonksTest {
         @Test
         void maxCourseDifferenceTest() throws IOException, ParseException {
             System.out.println(ss.maxCourseDifference());
-            assertThat(ss.maxCourseDifference()).isEqualTo("-52.79");
+            assertThat(ss.maxCourseDifference()).isEqualTo(-52.79);
         }
     }
 }
