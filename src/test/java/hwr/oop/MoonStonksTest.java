@@ -35,6 +35,30 @@ public class MoonStonksTest {
         void getCurrentSharePrice_retrievesCorrectData() {
             assertThat(SharePriceData.getCurrentSharePrice("SAP")).isEqualTo(87.34);
         }
+
+        @Test
+        void getSharePrice_wrongDateThrowsRuntimeError(){
+            boolean flag = false;
+            try {
+                SharePriceData.getSharePrice("SAP", "2099-12-12");
+            } catch (Exception e) {
+                assertThat(e).isInstanceOf(RuntimeException.class);
+                flag = true;
+            }
+            assertThat(flag).isTrue();
+        }
+
+        @Test
+        void getCurrentSharePrice_corruptedDataSheetsOrInternalError(){
+            boolean flag = false;
+            try {
+                SharePriceData.getCurrentSharePrice("porsche");
+            } catch (Exception e) {
+                assertThat(e).isInstanceOf(RuntimeException.class);
+                flag = true;
+            }
+            assertThat(flag).isTrue();
+        }
     }
 
     @Nested

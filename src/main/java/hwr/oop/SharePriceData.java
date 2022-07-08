@@ -28,8 +28,7 @@ class SharePriceData {
             BigDecimal bd=new BigDecimal(priceDouble).setScale(2, RoundingMode.HALF_DOWN);
             return priceDouble;
         } catch(Exception e) {
-            e.printStackTrace();
-            return 0;
+            throw new RuntimeException("Date not in Datasheets");
         }
     }
 
@@ -42,8 +41,8 @@ class SharePriceData {
             double currentPrice = Double.parseDouble(price);
             return currentPrice;
         } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
+            //No way of testing. Test through wrong securityAcronym input => is actually caught earlier.
+            throw new RuntimeException("DataSheets Corrupted!");
         }
     }
 }
