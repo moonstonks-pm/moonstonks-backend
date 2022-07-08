@@ -5,7 +5,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class SectorData implements IShareMetaData{
+public class SectorData extends MetaDataHashMap implements IShareMetaData{
 
     private final String metaDataName;
     private String securityAcronym;
@@ -19,6 +19,6 @@ public class SectorData implements IShareMetaData{
     }
     @Override
     public HashMap<String, Double> allocationData() throws IOException, ParseException {
-        return MetaDataHashMap.metaDataHashMap(securityAcronym, metaDataName);
+        return metaDataHashMap(securityAcronym, metaDataName);
     }
 }

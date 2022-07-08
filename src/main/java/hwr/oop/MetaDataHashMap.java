@@ -7,7 +7,7 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class MetaDataHashMap {
+class MetaDataHashMap {
 
     static HashMap<String, Double> metaDataHashMap(String securityAcronym, String metaDataName) throws IOException, ParseException {
         return new HashMap<>(){{

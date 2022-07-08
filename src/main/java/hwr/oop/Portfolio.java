@@ -61,13 +61,13 @@ public class Portfolio {
         return positionValues;
     }
 
-    HashMap<String, PortfolioPosition> portfolio(){
-        return this.portfolio;
-    }
-
 
     public boolean hasSecurity(String securityAcronym) {
         return portfolio.containsKey(securityAcronym);
+    }
+
+    boolean isEmpty(){
+        return portfolio.isEmpty();
     }
 
     public void output(){

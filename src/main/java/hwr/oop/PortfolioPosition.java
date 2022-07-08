@@ -39,13 +39,7 @@ public class PortfolioPosition {
         }
         return deposited;
     }
-    Queue<Double> getShares() {
-        Queue<Double> position = new LinkedList<>();
-        for(Double share: shares){
-            position.add(ShareMetaData.getCurrentSharePrice(securityAcronym));
-        }
-        return position;
-    }
+
     double getCurrentValue(){
         return SharePriceData.getCurrentSharePrice(securityAcronym) * shares.size();
     }

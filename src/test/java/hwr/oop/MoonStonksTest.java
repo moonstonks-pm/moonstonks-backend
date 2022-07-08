@@ -14,7 +14,6 @@ public class MoonStonksTest {
 
     private Portfolio n;
     private StockSearch ss;
-
     private IShareMetaData metaData;
 
     @BeforeEach
@@ -23,9 +22,6 @@ public class MoonStonksTest {
         ss = new StockSearch("sap");
     }
 
-    /*       @AfterEach
-           private void reset(){
-           }*/
     @Nested
     class SharePriceDataTest {  //basically retrieve data test
 
@@ -152,27 +148,54 @@ public class MoonStonksTest {
         }
 
         @Test
-        void sellShares_sellingSharesSoThatPortfolioIsEmpty_DeletesKeyValuePair() {  //ToDo write correct test later
+        void sellShares_sellingSharesSoThatPortfolioIsEmpty_DeletesKeyValuePair() {
             Portfolio p = new Portfolio();
             p.buyShares("SAP", "2022-06-17", 1);
             p.sellShares("SAP", 1);
-            assertThat(p.value()).isEqualTo(0);
+            assertThat(p.isEmpty()).isTrue();
         }
 
     }
 
     @Nested
     class PortfolioAnalysis {
+        private PortfolioAnalyse a;
+
+        @BeforeEach
+        void setUpAnalysis(){
+            n.buyShares("SAP", "2022-05-26", 4);
+            a = new PortfolioAnalyse(n);
+        }
         @Test
         void securityTypeAllocation_showsCorrectAllocation() throws IOException, ParseException {
-            n.buyShares("SAP", "2022-05-26", 4);
-            n.buyShares("EUNL", "2022-02-01", 7);
-            PortfolioAnalyse a = new PortfolioAnalyse(n);
-            System.out.println(a.regionAllocation());
-            System.out.println(a.countryAllocation());
-            System.out.println(a.industryAllocation());
-            System.out.println(a.sectorAllocation());
-            System.out.println(a.securityTypeAllocation());
+            assertThat(a.securityTypeAllocation()).isEqualTo("Stock: 100,00\n" );
+        }
+        @Test
+        void regionAllocation_showsCorrectAllocation() throws IOException, ParseException {
+            assertThat(a.regionAllocation()).isEqualTo("EU: 100,00\n" );
+        }
+
+        @Test
+        void countryAllocation_showsCorrectAllocation() throws IOException, ParseException {
+            assertThat(a.countryAllocation()).isEqualTo("Germany: 100,00\n" );
+        }
+
+        @Test
+        void sectorAllocation_showsCorrectAllocation() throws IOException, ParseException {
+            assertThat(a.sectorAllocation()).isEqualTo("IT: 100,00\n" );
+        }
+
+        @Test
+        void industryAllocation_showsCorrectAllocation() throws IOException, ParseException {
+            assertThat(a.industryAllocation()).isEqualTo("Software: 100,00\n" );
+        }
+
+        @Test
+        void privateAllocationMethod_worksWithSameAllocationType() throws IOException, ParseException {
+            n.buyShares("EUNL", "2022-04-14", 6);
+            n.buyShares("IS3N", "2022-03-02", 7);
+            a = new PortfolioAnalyse(n);
+            assertThat(a.securityTypeAllocation()).isEqualTo("ETF: 63,31\nStock: 36,69\n");
         }
     }
 

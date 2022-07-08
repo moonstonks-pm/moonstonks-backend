@@ -69,7 +69,7 @@ public class PortfolioAnalyse {
         String stringifiedAllocationData = "";
         for(String allocation: allocationData.keySet()){
             stringifiedAllocationData += allocation + ": " +
-                    String.format("%.2f",((allocationData.get(allocation) / portfolioValue)*100)) + "\n";
+                    String.format("%.2f\n",((allocationData.get(allocation) / portfolioValue)*100));
         }
         return stringifiedAllocationData;
     }
