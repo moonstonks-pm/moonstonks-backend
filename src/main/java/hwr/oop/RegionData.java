@@ -15,7 +15,7 @@ public class RegionData extends MetaDataHashMap implements IShareMetaData{
     }
 
     @Override
-    public HashMap<String, Double> allocationData() throws IOException, ParseException {
+    public HashMap<String, Double> allocationData(){
         return metaDataHashMap(securityAcronym, metaData);
     }
 

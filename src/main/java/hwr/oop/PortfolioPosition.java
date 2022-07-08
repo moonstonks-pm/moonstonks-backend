@@ -49,7 +49,7 @@ public class PortfolioPosition {
     }
 
     @Override
-    public String toString(){  //for debugging purposes ToDo delete
+    public String toString(){
         return shares.toString();
     }
 

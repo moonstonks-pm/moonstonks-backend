@@ -19,7 +19,7 @@ public class IndustryData extends MetaDataHashMap implements IShareMetaData{
         this.securityAcronym = securityAcronym;
     }
     @Override
-    public HashMap<String, Double> allocationData() throws IOException, ParseException {
+    public HashMap<String, Double> allocationData(){
         return metaDataHashMap(securityAcronym, metaData);
     }
 }

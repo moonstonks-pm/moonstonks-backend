@@ -18,32 +18,32 @@ public class PortfolioAnalyse {
 
     }
 
-    public String regionAllocation() throws IOException, ParseException {
+    public String regionAllocation(){
         IShareMetaData regionData = new RegionData();
         return stringifyAllocationData(allocation(regionData));
     }
 
-    public String countryAllocation() throws IOException, ParseException {
+    public String countryAllocation(){
         IShareMetaData countryData = new CountryData();
         return stringifyAllocationData(allocation(countryData));
     }
 
-    public String industryAllocation() throws IOException, ParseException {
+    public String industryAllocation(){
         IShareMetaData industryData = new IndustryData();
         return stringifyAllocationData(allocation(industryData));
     }
 
-    public String sectorAllocation() throws IOException, ParseException {
+    public String sectorAllocation(){
         IShareMetaData sectorData = new SectorData();
         return stringifyAllocationData(allocation(sectorData));
     }
 
-    public String securityTypeAllocation() throws IOException, ParseException {
+    public String securityTypeAllocation(){
         IShareMetaData securityType = new SecurityTypeData();
         return stringifyAllocationData(allocation(securityType));
     }
 
-    private HashMap<String, Double> allocation(IShareMetaData metaData) throws IOException, ParseException {
+    private HashMap<String, Double> allocation(IShareMetaData metaData){
         HashMap<String, Double> allocation = new HashMap<>();
 
         for (String securityAcronym : positions.keySet()) { //Bsp: "MSCI World"
@@ -65,10 +65,10 @@ public class PortfolioAnalyse {
     }
 
 
-    private String stringifyAllocationData(HashMap<String, Double> allocationData) throws IOException, ParseException {
+    private String stringifyAllocationData(HashMap<String, Double> allocationData){
         String stringifiedAllocationData = "";
         for(String allocation: allocationData.keySet()){
-            stringifiedAllocationData += allocation + ": " +
+            stringifiedAllocationData += String.format("%s: ",allocation) +
                     String.format("%.2f\n",((allocationData.get(allocation) / portfolioValue)*100));
         }
         return stringifiedAllocationData;

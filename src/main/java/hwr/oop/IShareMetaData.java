@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public interface IShareMetaData {
 
-    HashMap<String, Double> allocationData() throws IOException, ParseException;
+    HashMap<String, Double> allocationData();
 
     void setSecurityAcronym(String securityAcronym);
 }

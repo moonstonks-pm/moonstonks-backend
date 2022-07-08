@@ -14,7 +14,7 @@ public class CountryData extends MetaDataHashMap implements IShareMetaData{
         this.metaData = "country";
     }
     @Override
-    public HashMap<String, Double> allocationData() throws IOException, ParseException {
+    public HashMap<String, Double> allocationData(){
         return metaDataHashMap(securityAcronym, "country");
     }
 

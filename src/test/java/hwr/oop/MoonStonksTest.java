@@ -228,17 +228,17 @@ public class MoonStonksTest {
 
         @Test
         void toStringPortfolioPosition_returnsCorrectString() {
-            PortfolioPosition pp = new PortfolioPosition("SAP");
-            pp.addShare("2022-06-17", 2);
-            assertThat(pp.toString()).hasToString("[88.3, 88.3]");
+            PortfolioPosition portfolioPosition = new PortfolioPosition("SAP");
+            portfolioPosition.addShare("2022-06-17", 2);
+            assertThat(portfolioPosition.toString()).hasToString("[88.3, 88.3]");
         }
 
         @Test
         void getOutput() throws IOException, ParseException {
             newPortfolio.buyShares("SAP", "2022-06-21", 2);
-            newPortfolio.buyShares("EUNL", "2022-06-21", 5);
-            newPortfolio.buyShares("IS3N", "2022-06-21", 8);
-            newPortfolio.output();
+            newPortfolio.buyShares("EUNL", "2022-06-21", 100);
+            newPortfolio.buyShares("IS3N", "2022-06-21", 43);
+            PrintPortfolio.printPortfolioAndAnalysis(newPortfolio);
         }
 
     }
