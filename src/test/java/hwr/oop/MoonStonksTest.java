@@ -234,7 +234,7 @@ public class MoonStonksTest {
         }
 
         @Test
-        void getOutput() {
+        void getOutput() throws IOException, ParseException {
             newPortfolio.buyShares("SAP", "2022-06-21", 2);
             newPortfolio.buyShares("EUNL", "2022-06-21", 5);
             newPortfolio.buyShares("IS3N", "2022-06-21", 8);

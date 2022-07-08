@@ -1,6 +1,9 @@
 package hwr.oop;
 
+import org.json.simple.parser.ParseException;
+
 import javax.sound.sampled.Port;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -70,15 +73,27 @@ public class Portfolio {
         return portfolio.isEmpty();
     }
 
-    public void output(){
+    public void output() throws IOException, ParseException {
         for(String key : portfolio.keySet()){ //ToDo correct formatting and maybe add analytics
             System.out.println(key + "| Amount Deposited: " + portfolio.get(key).getAmountDeposited() +
                     "| Current Value: " + portfolio.get(key).getCurrentValue() +
                     String.format("| price Gains:  %.2f",
                             (portfolio.get(key).getCurrentValue() - portfolio.get(key).getAmountDeposited())) +
-                    "| buy in: " + (portfolio.get(key).getAmountDeposited() / portfolio.get(key).getPositionSize()) +
-                    "| # of Shares: " + portfolio.get(key).getPositionSize());
+                    String.format("| buy in: %.2f", (portfolio.get(key).getAmountDeposited() / portfolio.get(key).getPositionSize())) +
+                    "| # of Shares: " + portfolio.get(key).getPositionSize() + "\n");
         }
+        PortfolioAnalyse portfolioAnalyse = new PortfolioAnalyse(this);
+        System.out.println("Region allocation:");
+        System.out.println(portfolioAnalyse.regionAllocation());
+        System.out.println("Country allocation:");
+        System.out.println(portfolioAnalyse.countryAllocation());
+        System.out.println("Industry allocation:");
+        System.out.println(portfolioAnalyse.industryAllocation());
+        System.out.println("Sector allocation:");
+        System.out.println(portfolioAnalyse.sectorAllocation());
+        System.out.println("Security type allocation:");
+        System.out.println(portfolioAnalyse.securityTypeAllocation());
+
     }
 
 
