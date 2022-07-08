@@ -25,6 +25,6 @@ This project aims to model a share portfolio analysis tool. We referenced this t
 
 [TODO]: # (For each additional dependency your project requires- Add an additional row to the table!)
 
-| Number | Dependency Name | Dependency Description | Why is it necessary? |
-|--------|-----------------|------------------------|----------------------|
-| 1      | /               | /                      | /                    |
+| Number | Dependency Name | Dependency Description                                                                                      | Why is it necessary?                                                                                      |
+|--------|-----------------|-------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| 1      | json-simple     | JSON.simple is a simple Java based toolkit for JSON. You can use JSON.simple to encode or decode JSON data. | Because the programs needs to read data from JSON-Files, a dependency to simplify the process was useful! |

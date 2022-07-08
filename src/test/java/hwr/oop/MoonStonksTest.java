@@ -257,7 +257,6 @@ public class MoonStonksTest {
 
         @Test
         void maxCourseDifferenceTest() throws IOException, ParseException {
-            System.out.println(newStockSearch.maxCourseDifference());
             assertThat(newStockSearch.maxCourseDifference()).isEqualTo(-52.79);
         }
     }
