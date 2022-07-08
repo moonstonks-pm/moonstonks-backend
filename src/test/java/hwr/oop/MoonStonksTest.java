@@ -114,7 +114,7 @@ public class MoonStonksTest {
         }
 
         @Test
-        void buyShares_buyingSharesForFirstTime_CreatesNewKeyValuePair() {  //ToDo write correct test later
+        void buyShares_buyingSharesForFirstTime_CreatesNewKeyValuePair() {
             Portfolio p = new Portfolio();
             p.buyShares("SAP", "2022-06-22", 1);
             assertThat(p.value()).isEqualTo(87.34);
