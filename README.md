@@ -22,7 +22,6 @@ This repository contains a student project created for an ongoing lecture on obj
 | 2      | show portfolio / single stock performance | /     |
 | 3      | portrai stock data                        | /     |
 | 4      | generate portfolio analysis               | /     |
-| 5      | make trading recommendations              | /     |
 
 
 ## Additional Dependencies
